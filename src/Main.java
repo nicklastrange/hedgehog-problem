@@ -43,18 +43,18 @@ public class Main {
     }
 
     private static void getMaxSumOfAllRoads(int[][] arr, int rows, int columns,
-                                            int startingPosX, int startingPosY, List<Integer> route)
+                                            int startingPosDown, int startingPosRight, List<Integer> route)
     {
         //if already on max right or max bottom item return
-        if(startingPosX >= rows || startingPosY >= columns) return;
+        if(startingPosDown >= rows || startingPosRight >= columns) return;
         //adding current item to list
-        route.add(arr[startingPosX][startingPosY]);
+        route.add(arr[startingPosDown][startingPosRight]);
         //go bottom
-        getMaxSumOfAllRoads(arr, rows, columns, startingPosX+1, startingPosY, route);
+        getMaxSumOfAllRoads(arr, rows, columns, startingPosDown+1, startingPosRight, route);
         //go right
-        getMaxSumOfAllRoads(arr, rows, columns, startingPosX, startingPosY+1, route);
+        getMaxSumOfAllRoads(arr, rows, columns, startingPosDown, startingPosRight+1, route);
         //if reached the end (right bottom corner) check sum of all elements in route
-        if(startingPosX == rows-1 && startingPosY == columns-1){
+        if(startingPosDown == rows-1 && startingPosRight == columns-1){
  //           System.out.println(route);
             int tmpSum = route.stream().mapToInt(Integer::intValue).sum();
             if (tmpSum > result) {
